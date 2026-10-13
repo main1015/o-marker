@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 优雅细滚动条 (供文件夹列表使用，保留浏览与拖动体验) */
+.folder-scroll {
+  scrollbar-width: thin !important;
+  scrollbar-color: #cbd5e1 transparent !important;
+}
+.folder-scroll::-webkit-scrollbar {
+  display: block !important;
+  width: 5px !important;
+}
+.folder-scroll::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.folder-scroll::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1 !important;
+  border-radius: 9999px !important;
+}
+.folder-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8 !important;
+}
+
+/* 隐藏外层等不需要滚动条的区域 */
+.no-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+#plasmo-shadow-container {
+  all: initial;
+  box-sizing: border-box;
+}

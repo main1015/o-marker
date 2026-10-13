@@ -1,0 +1,39 @@
+{
+  "name": "o-marker",
+  "displayName": "o-marker - 现代智能书签与知识管理助手",
+  "version": "0.0.1",
+  "description": "下一代现代智能书签管理器。支持一键快速保存网页、层级目录与多维标签归档、全文检索与自托管私有同步。",
+  "author": "main1015",
+  "scripts": {
+    "dev": "plasmo dev",
+    "build": "plasmo build",
+    "package": "plasmo package"
+  },
+  "dependencies": {
+    "plasmo": "0.90.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.4.1"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "4.1.1",
+    "@types/chrome": "0.0.258",
+    "@types/node": "20.11.5",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "postcss": "8.4.33",
+    "prettier": "3.2.4",
+    "typescript": "5.3.3"
+  },
+  "manifest": {
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "storage"
+    ],
+    "host_permissions": [
+      "https://*/*",
+      "http://localhost:*/*"
+    ]
+  }
+}

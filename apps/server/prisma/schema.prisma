@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  passwordHash String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  
+  bookmarks    Bookmark[]
+  collections  Collection[]
+  tags         Tag[]
+}
+
+model Bookmark {
+  id           String      @id @default(uuid())
+  url          String
+  title        String?
+  description  String?
+  coverImg     String?
+  status       String      @default("ACTIVE") // ACTIVE, DEAD
+  isFavorite   Boolean     @default(false)
+  
+  userId       String
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  collectionId String?
+  collection   Collection? @relation(fields: [collectionId], references: [id], onDelete: SetNull)
+  
+  tags         Tag[]       // 隐式多对多关联
+
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  lastVisitedAt DateTime?
+}
+
+model Collection {
+  id        String   @id @default(uuid())
+  name      String
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // 支持多级文件夹嵌套
+  parentId  String?
+  parent    Collection?  @relation("CollectionHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children  Collection[] @relation("CollectionHierarchy")
+  
+  bookmarks Bookmark[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tag {
+  id        String     @id @default(uuid())
+  name      String
+  
+  userId    String
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  bookmarks Bookmark[] // 隐式多对多关联
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@unique([name, userId]) // 确保每个用户下的标签名是唯一的
+}
