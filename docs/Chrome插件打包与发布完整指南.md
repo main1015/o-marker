@@ -80,7 +80,7 @@
 👉 [Chrome应用商店文案与素材资料.md](./Chrome应用商店文案与素材资料.md)
 直接复制其中的：
 - **商品详情「说明」正文 (Description)**
-- **权限合理性说明（Justification）**：`activeTab`、`tabs`、`host_permissions`
+- **权限合理性说明（Justification）**：`activeTab`、`tabs`、`storage`、`host_permissions`
 
 ---
 
